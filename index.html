@@ -1,58 +1,83 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Hello, World! - A-Frame</title>
-    <meta name="description" content="Hello, World! - A-Frame">
-    <script src="https://aframe.io/releases/0.4.0/aframe.min.js"></script>
+<head>
+  <meta charset="utf-8">
+  <title>Hello, World! - A-Frame</title>
+  <meta name="description" content="Hello, World! - A-Frame">
+  <script src="https://aframe.io/releases/0.4.0/aframe.js"></script>
+  <script src="https://unpkg.com/aframe-physics-system@1.2.1/dist/aframe-physics-system.js"></script>
 
-    <!-- <script src="https://unpkg.com/aframe-physics-system@1.2.1/dist/aframe-physics-system.min.js"></script> -->
-  </head>
-  </head>
-  <body>
-    <a-scene physics="debug: true" id="thescene" cursor-listener>
-          <a-plane static-body position="0 0 -8" rotation="-90 0 0" width="10" height="10" color="#7BC8A4"></a-plane>
-          <a-entity dynamic-body="shape: box" id="lucifer" position="0 0.5 -5" rotation="0 0 0" color="#4CC3D9" depth="0.5" heigt="0.5" width="5">
-            <a-animation attribute="rotation"
-                   dur="10000"
-                   fill="forwards"
-                   easing="linear"
-                   to="0 360 0"
-                   repeat="indefinite">
-            </a-animation>
-            <a-cylinder id="cylinder" position="0 0 0"></a-cylinder>
-            <a-entity id="move">
-              <a-box id="hefboom" position="2 0.5 0" rotation="0 0 0" color="#4CC3D9" depth="0.5" height="0.5" width="4">
-              </a-box>
-              <a-sphere id="stef" position="4 0.5 0" radius="0.75" color="#EF2D5E">
-              </a-sphere>
-              <a-animation id="genius" attribute="rotation"
-                    begin="up"
-                     dur="1000"
-                     direction="alternate"
-                     fill="forwards"
-                     to="0 0 65"
-                     repeat="1">
-              </a-animation>
-            </a-entity>
-          </a-entity>
-        </a-scene>
-    <script>
-      var up = new Event('up');
-      
-      document.querySelector('#thescene').addEventListener('click', function () {
-        document.querySelector('#move').dispatchEvent(up);
-      });
+</head>
+<body>
+<a-scene physics="debug: true" physics-world="0 -9.8 0">
 
-      // AFRAME.registerComponent('cursor-listener', {
-      //   init: function () {
-      //     this.el.addEventListener('click', function () {
-      //       document.querySelector('#move').dispatchEvent(up);
-      //       console.log('I was clicked');
-      //     });
-      //   }
-      // });
+  <a-entity rotation="-45 0 0" position="0 5 8">
+    <a-camera></a-camera>
+  </a-entity>
 
-    </script>
-  </body>
+  <a-plane static-body position="0 -1 0" rotation="-90 0 0" width="20" height="20" color="#7BC8A4"></a-plane>
+
+    <!-- Dynamic box -->
+    <a-cylinder id="boxA" color="white" static-body position="0 0 0" width="0.5" height="1" depth="0.5"></a-cylinder>
+
+    <!-- Dynamic box -->
+    <a-sphere id="boxB" color="red" dynamic-body="mass: 20" position="0 0 5" radius="0.5"></a-sphere>
+
+    <a-box dynamic-body position="5 0 0" color="green" width="0.5" height="0.5" depth="0.5"></a-box>
+    <a-box dynamic-body position="-5 0 0" color="green" width="0.5" height="0.5" depth="0.5"></a-box>
+    <a-box dynamic-body position="0 0 5" color="green" width="0.5" height="0.5" depth="0.5"></a-box>
+    <a-box dynamic-body position="0 7 -5" color="green" width="0.5" height="0.5" depth="0.5"></a-box>
+
+    <a-box dynamic-body position="5 2 0" color="blue" width="0.5" height="0.5" depth="0.5"></a-box>
+    <a-box dynamic-body position="-5 2 0" color="blue" width="0.5" height="0.5" depth="0.5"></a-box>
+    <a-box dynamic-body position="0 2 5" color="blue" width="0.5" height="0.5" depth="0.5"></a-box>
+    <a-box dynamic-body position="0 2 -5" color="blue" width="0.5" height="0.5" depth="0.5"></a-box>
+
+    <a-box dynamic-body position="5 4 0" color="orange" width="0.5" height="0.5" depth="0.5"></a-box>
+    <a-box dynamic-body position="-5 4 0" color="orange" width="0.5" height="0.5" depth="0.5"></a-box>
+    <a-box dynamic-body position="0 4 5" color="orange" width="0.5" height="0.5" depth="0.5"></a-box>
+    <a-box dynamic-body position="0 4 -5" color="orange" width="0.5" height="0.5" depth="0.5"></a-box>
+
+</a-scene>
+
+
+<script>
+
+    var scene = document.querySelector('a-scene');
+
+    var boxA = document.querySelector('#boxA');
+    var boxB = document.querySelector('#boxB');
+
+    scene.addEventListener('loaded', function () {
+
+
+        var bodyA = boxA.body;
+        var pivotA = new CANNON.Vec3().copy(bodyA.position); // Vector from posA perpendicular to axisA
+
+        var bodyB = boxB.body;
+        var pivotB = new CANNON.Vec3().copy(bodyB.position); // Vector from posB perpendicular to axisB
+        bodyB.inertia.set
+
+        var pointToPointConstraint = new CANNON.PointToPointConstraint(bodyA, pivotA, bodyB, pivotB);
+        bodyB.world.addConstraint(pointToPointConstraint);
+
+    });
+
+    scene.addEventListener('click', function () {
+        boxB.body.applyImpulse(new CANNON.Vec3(0, 100, 0), new CANNON.Vec3().copy(boxB.getAttribute('position')));
+    });
+
+
+    setInterval(function(){
+      var x = boxB.getAttribute('position').x;
+      var z = boxB.getAttribute('position').z;
+      var f = 2;
+      console.log(-z*f);
+      console.log(-x*f);
+      boxB.body.applyImpulse(new CANNON.Vec3(-z*f, 0, x*f), new CANNON.Vec3().copy(boxB.getAttribute('position')));
+    },1000)
+
+
+</script>
+</body>
 </html>
