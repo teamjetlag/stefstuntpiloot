@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "node server.js",
-    "build": "next build",
+    "prestart": "next build",
     "start": "node server.js"
   },
   "dependencies": {
