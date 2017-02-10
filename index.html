@@ -20,22 +20,28 @@
                    repeat="indefinite">
             </a-animation>
             <a-cylinder id="cylinder" position="0 0 0"></a-cylinder>
-            <a-entity>
+            <a-entity id="move">
               <a-box id="hefboom" position="2 0.5 0" rotation="0 0 0" color="#4CC3D9" depth="0.5" height="0.5" width="4">
               </a-box>
               <a-sphere id="stef" position="4 0.5 0" radius="0.75" color="#EF2D5E">
               </a-sphere>
-              <a-animation attribute="rotation"
-                     dur="2000"
+              <a-animation id="genius" attribute="rotation"
+                    begin="up"
+                     dur="1000"
                      direction="alternate"
                      fill="forwards"
                      to="0 0 45"
-                     repeat="indefinite">
+                     repeat="1">
               </a-animation>
             </a-entity>
           </a-entity>
         </a-scene>
     <script>
+      setInterval(function(){
+        console.log('hee')
+        var up = new Event('up')
+        document.querySelector('#move').dispatchEvent(up)
+      },4000)
 
 
     </script>
