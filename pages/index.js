@@ -2,9 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import io from 'socket.io-client';
 import os from 'os';
-// import aframe from 'aframe';
-// import physics from 'aframe-physics-system';
-// import applyImpulse from './../static/impulse.js';
+import applyImpulse from './../static/impulse';
 
 // physics.registerAll();
 
@@ -19,19 +17,10 @@ if (HOST === 'http://localhost') {
 
 console.log(`HOST: ${HOST}`);
 
+// Instantiate variables used for refs
+let boxB;
+
 class Index extends React.Component {
-  handleSceneClick(event) {
-    console.log('Scene was clicked');
-    console.log(event);
-
-    socket.emit('sceneClicked', {
-      data: {
-        event: 'Scene clicked',
-        timeStamp: Date.now()
-      }
-    });
-  }
-
   componentDidMount() {
     socket.on('hello', (data) => {
       console.log(data);
@@ -41,8 +30,20 @@ class Index extends React.Component {
       console.log('Scene update received from server to client');
       console.log(data);
 
-      // TODO: Apply impulse
-      // applyImpulse();
+      // Apply impulse
+      applyImpulse(boxB);
+    });
+  }
+
+  handleSceneClick(event) {
+    console.log('Scene was clicked');
+    console.log(event);
+
+    socket.emit('sceneClicked', {
+      data: {
+        event: 'Scene clicked',
+        timeStamp: Date.now()
+      }
     });
   }
 
@@ -66,7 +67,14 @@ class Index extends React.Component {
           <a-cylinder id="boxA" color="white" static-body position="0 0 0" width="0.5" height="1" depth="0.5"></a-cylinder>
 
           {/* Dynamic box */}
-          <a-sphere id="boxB" color="red" dynamic-body="mass: 20" position="0 -5 0.2" radius="0.5"></a-sphere>
+          <a-sphere
+            id="boxB"
+            color="red"
+            dynamic-body="mass: 20"
+            position="0 -5 0.2"
+            radius="0.5"
+            ref={(boxb) => { boxB = boxb; }}
+          ></a-sphere>
 
           <a-entity>
             <a-entity position="2 -0.5 0">

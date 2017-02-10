@@ -14,10 +14,6 @@ scene.addEventListener('loaded', function () {
   bodyB.world.addConstraint(pointToPointConstraint);
 });
 
-scene.addEventListener('click', function () {
-  boxB.body.applyImpulse(new CANNON.Vec3(0, 130, 0), new CANNON.Vec3().copy(boxB.getAttribute('position')));
-});
-
 setInterval(function () {
   var x = boxB.getAttribute('position').x;
   var z = boxB.getAttribute('position').z;
