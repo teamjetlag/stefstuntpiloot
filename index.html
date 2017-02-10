@@ -5,11 +5,12 @@
     <title>Hello, World! - A-Frame</title>
     <meta name="description" content="Hello, World! - A-Frame">
     <script src="https://aframe.io/releases/0.4.0/aframe.min.js"></script>
+
     <!-- <script src="https://unpkg.com/aframe-physics-system@1.2.1/dist/aframe-physics-system.min.js"></script> -->
   </head>
   </head>
   <body>
-    <a-scene physics="debug: true">
+    <a-scene physics="debug: true" id="thescene">
           <a-plane static-body position="0 0 -8" rotation="-90 0 0" width="10" height="10" color="#7BC8A4"></a-plane>
           <a-entity dynamic-body="shape: box" id="lucifer" position="0 0.5 -5" rotation="0 0 0" color="#4CC3D9" depth="0.5" heigt="0.5" width="5">
             <a-animation attribute="rotation"
@@ -30,20 +31,19 @@
                      dur="1000"
                      direction="alternate"
                      fill="forwards"
-                     to="0 0 45"
+                     to="0 0 65"
                      repeat="1">
               </a-animation>
             </a-entity>
           </a-entity>
         </a-scene>
     <script>
-      setInterval(function(){
-        console.log('hee')
-        var up = new Event('up')
-        document.querySelector('#move').dispatchEvent(up)
-      },4000)
 
-
+      var up = new Event('up');
+      console.log(hefboom);
+      document.querySelector('#thescene').addEventListener('click', function () {
+        document.querySelector('#move').dispatchEvent(up);
+      });
     </script>
   </body>
 </html>
