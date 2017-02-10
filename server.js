@@ -24,19 +24,19 @@ app.prepare().then(() => {
   const io = socketIo(httpServer);
 
   // Handle the websocket connection
-  io.on('connection', (client) => {
-    console.log('Socket client connected...');
+  io.on('connection', (socket) => {
+    console.log('Socket server connected...');
 
-    client.emit('hello', 'Hello from server');
+    socket.emit('hello', 'Hello from server');
 
-    client.on('sceneClicked', (data) => {
+    socket.on('sceneClicked', (data) => {
       console.log('Scene clicked data received from client to server');
       console.log(data);
 
-      client.emit('sceneUpdate', data);
+      io.emit('sceneUpdate', data);
     });
 
-    client.on('disconnected', (data) => {
+    socket.on('disconnected', (data) => {
       console.log('Client was disconnected from server');
       console.log(data);
     });

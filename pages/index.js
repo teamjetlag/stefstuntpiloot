@@ -49,7 +49,7 @@ class Index extends React.Component {
         <Head>
           <title>My page title</title>
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-          <script src="https://aframe.io/releases/0.4.0/aframe.min.js"></script>
+          <script src="/static/aframe.min.js"></script>
         </Head>
         <a-scene physics="debug: true" id="thescene" onClick={this.emitSceneData}>
           <a-plane static-body position="0 0 -8" rotation="-90 0 0" width="10" height="10" color="#7BC8A4"></a-plane>
