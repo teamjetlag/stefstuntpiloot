@@ -33,6 +33,11 @@ app.prepare().then(() => {
       console.log('Scene clicked data received at server');
       console.log(data);
     });
+
+    client.on('disconnected', (data) => {
+      console.log('Client was disconnected from server');
+      console.log(data);
+    });
   });
 
   // Start the HTTP server
@@ -41,6 +46,6 @@ app.prepare().then(() => {
       throw err;
     }
 
-    return console.log('> Express server ready on http://localhost:3000');
+    return console.log(`> Express server ready on http://localhost:${PORT}`);
   });
 });

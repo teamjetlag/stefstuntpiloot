@@ -38,9 +38,10 @@ var _socket2 = _interopRequireDefault(_socket);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var port = process.env.PORT || 3000;
+var HOST = location.origin.replace(/^http/, 'ws');
+var socket = (0, _socket2.default)(HOST);
 
-var socket = (0, _socket2.default)('http://localhost:' + port);
+console.log('HOST: ' + HOST);
 
 var Index = function (_React$Component) {
   (0, _inherits3.default)(Index, _React$Component);

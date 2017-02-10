@@ -2,9 +2,10 @@ import React from 'react';
 import Head from 'next/head';
 import io from 'socket.io-client';
 
-const port = process.env.PORT || 3000;
+const HOST = location.origin.replace(/^http/, 'ws');
+const socket = io(HOST);
 
-const socket = io(`http://localhost:${port}`);
+console.log(`HOST: ${HOST}`);
 
 class Index extends React.Component {
   emitSceneData(event) {
