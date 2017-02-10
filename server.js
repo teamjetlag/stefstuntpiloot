@@ -8,7 +8,7 @@ const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
 app.prepare().then(() => {
   // Create express server
@@ -36,7 +36,7 @@ app.prepare().then(() => {
   });
 
   // Start the HTTP server
-  httpServer.listen(port, (err) => {
+  httpServer.listen(PORT, (err) => {
     if (err) {
       throw err;
     }
