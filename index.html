@@ -4,29 +4,24 @@
     <meta charset="utf-8">
     <title>Hello, World! - A-Frame</title>
     <meta name="description" content="Hello, World! - A-Frame">
-    <script src="https://aframe.io/releases/0.3.2/aframe.min.js"></script>
+    <script src="aframe.min.js"></script>
+    <script src="aframe-physics-system.min.js"></script>
   </head>
   <body>
-    <a-scene>
+    <a-scene physics="debug: true; gravity: -9.8">
       <a-assets>
         <a-asset-item id="spitfire" src="spitfire.dae"></a-asset-item>
-        <a-asset-item id="porco-rosso" src="porco-rosso.dae"></a-asset-item>
-        <a-asset-item id="porco-rosso-plane" src="porco-rosso-plane.dae"></a-asset-item>
       </a-assets>
-      <a-entity position="0 1 -5" rotation="0 0 0" color="#4CC3D9" depth="0.5" heigt="0.5" width="5" onclick="alert('123')">
-        <a-animation attribute="rotation"
-               dur="10000"
-               fill="forwards"
-               easing="linear"
-               to="0 360 0"
-               repeat="indefinite">
-        </a-animation>
-        <a-entity position="0 0 -6" rotation="0 -90 0" scale="0.3 0.3 0.3" collada-model="#porco-rosso-plane"></a-entity>
-      </a-entity>
-      <a-box position="-1 0 -4" height="0.75" width="0.5" color="green"></a-box>
-      <a-plane position="-3 0 -5" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-      <a-sky color="#ECECEC"></a-sky>
-      <a-entity position="0 0 -10" collada-model="#porco-rosso"></a-entity>
+      
+      <!-- Camera -->
+      <a-entity camera look-controls></a-entity>
+      <!-- Floor -->
+      <a-plane static-body width="100" depth="100"></a-plane>
+      <!-- Immovable box -->
+      <a-box static-body position="0 0.5 -5" width="3" height="1" depth="1" color="red"></a-box>
+      <!-- Dynamic box -->
+      <a-box dynamic-body position="0 5 -5" width="1" height="1" depth="1" color="red" mass="5"></a-box>
+      <a-entity dynamic-body mass="5" position="0 5 0" shape="box" collada-model="#spitfire"></a-entity>
     </a-scene>
   </body>
 </html>
