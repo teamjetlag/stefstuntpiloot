@@ -36,7 +36,8 @@ app.prepare().then(() => {
 
     client.emit('hello', 'Hello from server');
 
-    client.on('join', (data) => {
+    client.on('sceneClicked', (data) => {
+      console.log('Scene clicked data received');
       console.log(data);
     });
   });

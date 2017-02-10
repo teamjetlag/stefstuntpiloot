@@ -46,6 +46,8 @@ module.exports = {
     // Airbnb: 'space-before-function-paren': [2, { 'anonymous': 'always', 'named': 'never' }]
     'space-before-function-paren': [2, 'never'],
 
-    'react/jsx-filename-extension': 0
+    'react/jsx-filename-extension': 0,
+    'react/self-closing-comp': 0,
+    'max-len': 0
   }
 };
