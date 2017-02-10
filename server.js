@@ -37,7 +37,7 @@ app.prepare().then(() => {
     client.emit('hello', 'Hello from server');
 
     client.on('sceneClicked', (data) => {
-      console.log('Scene clicked data received');
+      console.log('Scene clicked data received at server');
       console.log(data);
     });
   });
