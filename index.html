@@ -1,37 +1,66 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title>Hello, World! - A-Frame</title>
     <meta name="description" content="Hello, World! - A-Frame">
-    <script src="aframe.min.js"></script>
-    <script src="aframe-physics-system.min.js"></script>
-  </head>
-  <body>
-    <a-scene physics="debug: false; gravity: -9.8">
-      <a-assets>
-        <a-asset-item id="spitfire" src="spitfire_good.dae"></a-asset-item>
-        <a-asset-item id="porco-rosso-plane" src="porco-rosso-plane.dae"></a-asset-item>
-      </a-assets>
-      
-      <!-- Camera -->
-      <a-entity camera look-controls position="0 8 5" rotation="-45 0 0"></a-entity>
-      <!-- Static box -->
-      <a-box static-body position="0 -1 -3" color="red"></a-box>
-      <!-- Airplane -->
-      <a-entity dynamic-body="shape: box; mass: 5" position="0 5 -10" rotation="0 -90 0" collada-model="#spitfire"></a-entity>
-      <a-entity>
-        <a-animation attribute="rotation"
-                     dur="10000"
-                     fill="forwards"
-                     easing="linear"
-                     to="0 360 0"
-                     repeat="indefinite">
+    <script src="https://aframe.io/releases/0.4.0/aframe.js"></script>
+    <script src="https://unpkg.com/aframe-physics-system@1.2.1/dist/aframe-physics-system.js"></script>
+</head>
+
+<body>
+    <a-scene physics="debug: false" physics-world="0 -9.8 0">
+        <a-entity rotation="-45 0 0" position="0 5 8">
+            <a-camera></a-camera>
+        </a-entity>
+        <a-assets>
+            <a-asset-item id="spitfire" src="spitfire_good.dae"></a-asset-item>
+        </a-assets>
+        <a-plane static-body position="0 -1 0" rotation="-90 0 0" width="20" height="20" color="#7BC8A4"></a-plane>
+        <a-entity>
+            <!-- Static box -->
+            <a-box id="boxA" color="blue" static-body position="0 0 0" width="1" height="1" depth="1"></a-box>
+            <!-- Dynamic box -->
+            <!-- <a-box id="vliegtuig" dynamic-body="shape: box; mass: 5" position="0 0 -10" rotation="0 -90 0" collada-model="#spitfire"></a-box> -->
+            <a-sphere id="vliegtuig" color="red" dynamic-body position="0 0 5" width="1" height="1" depth="1" collada-model="#spitfire"></a-sphere>
+        </a-entity>
+        <a-animation attribute="rotation" dur="10000" fill="forwards" easing="linear" to="0 360 0" repeat="indefinite">
         </a-animation>
-        <a-box static-body postition="0 0 0" depth="5" height="0.5" width="0.5" color="yellow"></a-box>
-      </a-entity>
-      <!-- Floor -->
-      <a-plane static-body position="0 -1 -10" width="25" height="25" rotation="-90 0 0" color="green"></a-plane>
     </a-scene>
-  </body>
+    <script>
+    var scene = document.querySelector('a-scene');
+
+    var boxA = document.querySelector('#boxA');
+    var vliegtuig = document.querySelector('#vliegtuig');
+
+    scene.addEventListener('model-loaded', function() {
+
+        init();
+        setInterval(klap, 3000)
+
+    });
+
+    function init() {
+        var bodyA = boxA.body;
+        var pivotA = new CANNON.Vec3().copy(bodyA.position); // Vector from posA perpendicular to axisA
+
+        var bodyB = vliegtuig.body;
+        var pivotB = new CANNON.Vec3().copy(bodyB.position); // Vector from posB perpendicular to axisB
+
+        // bodyB.inertia.set(0, 25, 0);
+        // bodyB.invInertia.set(0, 25, 0);
+
+        var pointToPointConstraint = new CANNON.PointToPointConstraint(bodyA, pivotA, bodyB, pivotB);
+        bodyB.world.addConstraint(pointToPointConstraint);
+    }
+
+    function klap() {
+        vliegtuig.body.applyImpulse(new CANNON.Vec3(0, 30, 0), new CANNON.Vec3().copy(vliegtuig.getAttribute('position')));
+    }
+
+    </script>
+</body>
+
 </html>
+Contact GitHub API Training Shop Blog About
