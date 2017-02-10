@@ -42,14 +42,21 @@ var _os2 = _interopRequireDefault(_os);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-console.log('HOST : ' + _os2.default.hostname());
-
-// console.log('Window hostname: '+ window.location.hostname);
-
+var socket = void 0;
 var HOST = 'http://' + _os2.default.hostname();
-var socket = (0, _socket2.default)(HOST);
+
+if (HOST === 'http://localhost') {
+  socket = (0, _socket2.default)(HOST + ':3000');
+} else {
+  socket = (0, _socket2.default)(HOST);
+}
 
 console.log('HOST: ' + HOST);
+
+socket.on('sceneUpdate', function (data) {
+  console.log('Scene update received from server to client');
+  console.log(data);
+});
 
 var Index = function (_React$Component) {
   (0, _inherits3.default)(Index, _React$Component);
@@ -79,6 +86,12 @@ var Index = function (_React$Component) {
       socket.on('hello', function (data) {
         console.log(data);
       });
+    }
+  }, {
+    key: 'handleData',
+    value: function handleData(data) {
+      console.log('Websocket data');
+      console.log(data);
     }
   }, {
     key: 'render',

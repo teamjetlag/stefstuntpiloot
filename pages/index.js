@@ -3,14 +3,21 @@ import Head from 'next/head';
 import io from 'socket.io-client';
 import os from 'os';
 
-console.log(`HOST : ${os.hostname()}`);
-
-// console.log('Window hostname: '+ window.location.hostname);
-
+let socket;
 const HOST = `http://${os.hostname()}`;
-const socket = io(HOST);
+
+if (HOST === 'http://localhost') {
+  socket = io(`${HOST}:3000`);
+} else {
+  socket = io(HOST);
+}
 
 console.log(`HOST: ${HOST}`);
+
+socket.on('sceneUpdate', (data) => {
+  console.log('Scene update received from server to client');
+  console.log(data);
+});
 
 class Index extends React.Component {
   emitSceneData(event) {
@@ -29,6 +36,11 @@ class Index extends React.Component {
     socket.on('hello', (data) => {
       console.log(data);
     });
+  }
+
+  handleData(data) {
+    console.log('Websocket data');
+    console.log(data);
   }
 
   render() {
