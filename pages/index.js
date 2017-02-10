@@ -19,7 +19,7 @@ console.log(`HOST: ${HOST}`);
 let boxB;
 
 class Index extends React.Component {
-  static handleSceneClick(event) {
+  handleSceneClick(event) {
     console.log('Scene was clicked');
     console.log(event);
 

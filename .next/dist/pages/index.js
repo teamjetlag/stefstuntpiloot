@@ -70,6 +70,19 @@ var Index = function (_React$Component) {
   }
 
   (0, _createClass3.default)(Index, [{
+    key: 'handleSceneClick',
+    value: function handleSceneClick(event) {
+      console.log('Scene was clicked');
+      console.log(event);
+
+      socket.emit('sceneClicked', {
+        data: {
+          event: 'Scene clicked',
+          timeStamp: Date.now()
+        }
+      });
+    }
+  }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
       socket.on('hello', function (data) {
@@ -82,19 +95,6 @@ var Index = function (_React$Component) {
 
         // Apply impulse
         (0, _impulse2.default)(boxB);
-      });
-    }
-  }, {
-    key: 'handleSceneClick',
-    value: function handleSceneClick(event) {
-      console.log('Scene was clicked');
-      console.log(event);
-
-      socket.emit('sceneClicked', {
-        data: {
-          event: 'Scene clicked',
-          timeStamp: Date.now()
-        }
       });
     }
   }, {
