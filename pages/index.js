@@ -19,6 +19,18 @@ console.log(`HOST: ${HOST}`);
 let boxB;
 
 class Index extends React.Component {
+  static handleSceneClick(event) {
+    console.log('Scene was clicked');
+    console.log(event);
+
+    socket.emit('sceneClicked', {
+      data: {
+        event: 'Scene clicked',
+        timeStamp: Date.now()
+      }
+    });
+  }
+
   componentDidMount() {
     socket.on('hello', (data) => {
       console.log(data);
@@ -30,18 +42,6 @@ class Index extends React.Component {
 
       // Apply impulse
       applyImpulse(boxB);
-    });
-  }
-
-  handleSceneClick(event) {
-    console.log('Scene was clicked');
-    console.log(event);
-
-    socket.emit('sceneClicked', {
-      data: {
-        event: 'Scene clicked',
-        timeStamp: Date.now()
-      }
     });
   }
 
