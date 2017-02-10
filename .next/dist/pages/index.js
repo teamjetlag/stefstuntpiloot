@@ -4,31 +4,31 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _getPrototypeOf = require('D:\\Projects\\stefstuntpiloot\\node_modules\\babel-runtime/core-js/object/get-prototype-of');
+var _getPrototypeOf = require('/Users/axel/Projects/Capathon/stefstuntpiloot/node_modules/babel-runtime/core-js/object/get-prototype-of');
 
 var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
 
-var _classCallCheck2 = require('D:\\Projects\\stefstuntpiloot\\node_modules\\babel-runtime/helpers/classCallCheck');
+var _classCallCheck2 = require('/Users/axel/Projects/Capathon/stefstuntpiloot/node_modules/babel-runtime/helpers/classCallCheck');
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _createClass2 = require('D:\\Projects\\stefstuntpiloot\\node_modules\\babel-runtime/helpers/createClass');
+var _createClass2 = require('/Users/axel/Projects/Capathon/stefstuntpiloot/node_modules/babel-runtime/helpers/createClass');
 
 var _createClass3 = _interopRequireDefault(_createClass2);
 
-var _possibleConstructorReturn2 = require('D:\\Projects\\stefstuntpiloot\\node_modules\\babel-runtime/helpers/possibleConstructorReturn');
+var _possibleConstructorReturn2 = require('/Users/axel/Projects/Capathon/stefstuntpiloot/node_modules/babel-runtime/helpers/possibleConstructorReturn');
 
 var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = require('D:\\Projects\\stefstuntpiloot\\node_modules\\babel-runtime/helpers/inherits');
+var _inherits2 = require('/Users/axel/Projects/Capathon/stefstuntpiloot/node_modules/babel-runtime/helpers/inherits');
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
-var _react = require('D:\\Projects\\stefstuntpiloot\\node_modules\\react\\react.js');
+var _react = require('/Users/axel/Projects/Capathon/stefstuntpiloot/node_modules/react/react.js');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _head = require('D:\\Projects\\stefstuntpiloot\\node_modules\\next\\dist\\lib\\head.js');
+var _head = require('/Users/axel/Projects/Capathon/stefstuntpiloot/node_modules/next/dist/lib/head.js');
 
 var _head2 = _interopRequireDefault(_head);
 
@@ -64,9 +64,19 @@ var Index = function (_React$Component) {
   (0, _inherits3.default)(Index, _React$Component);
 
   function Index() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
     (0, _classCallCheck3.default)(this, Index);
 
-    return (0, _possibleConstructorReturn3.default)(this, (Index.__proto__ || (0, _getPrototypeOf2.default)(Index)).apply(this, arguments));
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Index.__proto__ || (0, _getPrototypeOf2.default)(Index)).call.apply(_ref, [this].concat(args))), _this), _this.newGame = function () {
+      socket.emit('newGame');
+    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
   }
 
   (0, _createClass3.default)(Index, [{
@@ -88,7 +98,6 @@ var Index = function (_React$Component) {
       socket.on('hello', function (data) {
         console.log(data);
       });
-
       socket.on('sceneUpdate', function (data) {
         console.log('Scene update received from server to client');
         console.log(data);
@@ -96,11 +105,15 @@ var Index = function (_React$Component) {
         // Apply impulse
         (0, _impulse2.default)(boxB);
       });
+
+      socket.on('again', function () {
+        location.reload();
+      });
     }
   }, {
     key: 'render',
     value: function render() {
-      return _react2.default.createElement('div', null, _react2.default.createElement(_head2.default, null, _react2.default.createElement('title', null, 'My page title'), _react2.default.createElement('meta', { name: 'viewport', content: 'initial-scale=1.0, width=device-width' }), _react2.default.createElement('script', { src: '/static/aframe.min.js' }), _react2.default.createElement('script', { src: '/static/aframe-physics-system.js' })), _react2.default.createElement('a-scene', { physics: 'debug: false; friction: 0.002;', 'physics-world': '0 -9.8 0', onClick: this.handleSceneClick }, _react2.default.createElement('a-entity', { rotation: '-45 0 0', position: '0 5 8' }, _react2.default.createElement('a-camera', null)), _react2.default.createElement('a-plane', { 'static-body': true, position: '0 -1 0', rotation: '-90 0 0', width: '20', height: '20', color: '#7BC8A4' }), _react2.default.createElement('a-cylinder', { id: 'boxA', color: 'white', 'static-body': true, position: '0 0 0', width: '0.5', height: '1', depth: '0.5' }), _react2.default.createElement('a-sphere', {
+      return _react2.default.createElement('div', null, _react2.default.createElement(_head2.default, null, _react2.default.createElement('title', null, 'My page title'), _react2.default.createElement('meta', { name: 'viewport', content: 'initial-scale=1.0, width=device-width' }), _react2.default.createElement('script', { src: '/static/aframe.min.js' }), _react2.default.createElement('script', { src: '/static/aframe-physics-system.js' })), _react2.default.createElement('header', null, _react2.default.createElement('button', { onClick: this.newGame }, 'New Game')), _react2.default.createElement('a-scene', { physics: 'debug: false; friction: 0.002;', 'physics-world': '0 -9.8 0', onClick: this.handleSceneClick }, _react2.default.createElement('a-entity', { rotation: '-45 0 0', position: '0 5 8' }, _react2.default.createElement('a-camera', null)), _react2.default.createElement('a-plane', { 'static-body': true, position: '0 -1 0', rotation: '-90 0 0', width: '20', height: '20', color: '#7BC8A4' }), _react2.default.createElement('a-cylinder', { id: 'boxA', color: 'white', 'static-body': true, position: '0 0 0', width: '0.5', height: '1', depth: '0.5' }), _react2.default.createElement('a-sphere', {
         id: 'boxB',
         color: 'red',
         'dynamic-body': 'mass: 50',

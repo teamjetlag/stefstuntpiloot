@@ -19,6 +19,11 @@ console.log(`HOST: ${HOST}`);
 let boxB;
 
 class Index extends React.Component {
+  newGame = () => {
+    socket.emit('newGame')
+
+  };
+
   handleSceneClick(event) {
     console.log('Scene was clicked');
     console.log(event);
@@ -29,13 +34,13 @@ class Index extends React.Component {
         timeStamp: Date.now()
       }
     });
+
   }
 
   componentDidMount() {
     socket.on('hello', (data) => {
       console.log(data);
     });
-
     socket.on('sceneUpdate', (data) => {
       console.log('Scene update received from server to client');
       console.log(data);
@@ -43,6 +48,10 @@ class Index extends React.Component {
       // Apply impulse
       applyImpulse(boxB);
     });
+
+    socket.on('again', () => {
+      location.reload()
+    })
   }
 
   render() {
@@ -54,6 +63,10 @@ class Index extends React.Component {
           <script src="/static/aframe.min.js"></script>
           <script src="/static/aframe-physics-system.js"></script>
         </Head>
+        <header>
+
+          <button onClick={this.newGame}>New Game</button>
+        </header>
         <a-scene physics="debug: false; friction: 0.002;" physics-world="0 -9.8 0" onClick={this.handleSceneClick}>
           <a-entity rotation="-45 0 0" position="0 5 8">
             <a-camera />

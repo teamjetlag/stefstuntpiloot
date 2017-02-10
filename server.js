@@ -37,6 +37,10 @@ app.prepare().then(() => {
       io.emit('sceneUpdate', data);
     });
 
+    socket.on('newGame', () => {
+      io.emit('again')
+    })
+
     socket.on('disconnected', (data) => {
       console.log('Client was disconnected from server');
       console.log(data);
