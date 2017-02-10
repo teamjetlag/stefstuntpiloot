@@ -61,14 +61,14 @@ scene.addEventListener('loaded', function() {
 
 });
 
-scene.addEventListener('click', function() {
-  boxB.body.applyImpulse(new CANNON.Vec3(0, 100, 0), new CANNON.Vec3().copy(boxB.getAttribute('position')));
-});
+// scene.addEventListener('click', function() {
+//   boxB.body.applyImpulse(new CANNON.Vec3(0, 100, 0), new CANNON.Vec3().copy(boxB.getAttribute('position')));
+// });
 
 
 setInterval(function() {
   var x = boxB.getAttribute('position').x;
   var z = boxB.getAttribute('position').z;
-  var f = 25;
+  var f = 10;
   boxB.body.applyImpulse(new CANNON.Vec3(z*f, 0, -x*f), new CANNON.Vec3().copy(boxB.getAttribute('position')));
-}, 1000)
+}, 1500)
