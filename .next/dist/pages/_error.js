@@ -24,23 +24,26 @@ var _inherits2 = require('D:\\Projects\\stefstuntpiloot\\node_modules\\babel-run
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
+var _style = require('D:\\Projects\\stefstuntpiloot\\node_modules\\styled-jsx\\style.js');
+
+var _style2 = _interopRequireDefault(_style);
+
 var _react = require('D:\\Projects\\stefstuntpiloot\\node_modules\\react\\react.js');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _css = require('D:\\Projects\\stefstuntpiloot\\node_modules\\next\\dist\\lib\\css.js');
+var _head = require('D:\\Projects\\stefstuntpiloot\\node_modules\\next\\dist\\lib\\head.js');
 
-var _css2 = _interopRequireDefault(_css);
+var _head2 = _interopRequireDefault(_head);
 
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : { default: obj };
-}
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Error = function (_React$Component) {
   (0, _inherits3.default)(Error, _React$Component);
 
   function Error() {
     (0, _classCallCheck3.default)(this, Error);
+
     return (0, _possibleConstructorReturn3.default)(this, (Error.__proto__ || (0, _getPrototypeOf2.default)(Error)).apply(this, arguments));
   }
 
@@ -51,7 +54,22 @@ var Error = function (_React$Component) {
 
       var title = statusCode === 404 ? 'This page could not be found' : statusCode ? 'Internal Server Error' : 'An unexpected error has occurred';
 
-      return _react2.default.createElement('div', { className: styles.error }, _react2.default.createElement('div', { className: styles.text }, statusCode ? _react2.default.createElement('h1', { className: styles.h1 }, statusCode) : null, _react2.default.createElement('div', { className: styles.desc }, _react2.default.createElement('h2', { className: styles.h2 }, title, '.'))));
+      return _react2.default.createElement('div', { className: 'error', 'data-jsx': 676398231
+      }, _react2.default.createElement(_head2.default, null, _react2.default.createElement('meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0', 'data-jsx': 676398231
+      })), _react2.default.createElement('div', {
+        'data-jsx': 676398231
+      }, statusCode ? _react2.default.createElement('h1', {
+        'data-jsx': 676398231
+      }, statusCode) : null, _react2.default.createElement('div', { className: 'desc', 'data-jsx': 676398231
+      }, _react2.default.createElement('h2', {
+        'data-jsx': 676398231
+      }, title, '.'))), _react2.default.createElement(_style2.default, {
+        styleId: 3608526279,
+        css: '\n        body { margin: 0 }\n      '
+      }), _react2.default.createElement(_style2.default, {
+        styleId: 965400277,
+        css: '.error[data-jsx="676398231"] {color: #000;background: #fff;font-family: -apple-system, BlinkMacSystemFont, Roboto, "Segoe UI", "Fira Sans", Avenir, "Helvetica Neue", "Lucida Grande", sans-serif;height: 100vh;text-align: center;display:-webkit-flex; display:flex;-webkit-flex-direction: column;-moz-flex-direction: column;flex-direction: column;align-items: center;justify-content: center;}.desc[data-jsx="676398231"] {display: inline-block;text-align: left;line-height: 49px;height: 49px;vertical-align: middle;}h1[data-jsx="676398231"] {display: inline-block;border-right: 1px solid rgba(0, 0, 0,.3);margin: 0;margin-right: 20px;padding: 10px 23px 10px 0;font-size: 24px;font-weight: 500;vertical-align: top;}h2[data-jsx="676398231"] {font-size: 14px;font-weight: normal;margin: 0;padding: 0;}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm5vZGVfbW9kdWxlc1xcbmV4dFxcZGlzdFxccGFnZXNcXF9lcnJvci5qcz9lbnRyeSJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUE0QmtCLEFBQ0YsOEJBQ00sWUFDSyxpQkFDc0gsdUlBQ3pILGNBQ0ssbUJBQ0wsbUNBQ1Msa0ZBQ0gsb0JBQ0ksd0JBQ3pCLENBRU0sNkJBQ2lCLHNCQUNMLGlCQUNDLGtCQUNMLGFBQ1UsdUJBQ3hCLENBRUcsMEJBQ29CLHNCQUNtQix5Q0FDL0IsVUFDUyxtQkFDTywwQkFDVixnQkFDQyxpQkFDRyxvQkFDckIsQ0FFRywwQkFDYyxnQkFDSSxvQkFDVixVQUNDLFdBQ1oiLCJmaWxlIjoibm9kZV9tb2R1bGVzXFxuZXh0XFxkaXN0XFxwYWdlc1xcX2Vycm9yLmpzP2VudHJ5Iiwic291cmNlUm9vdCI6IkQ6L1Byb2plY3RzL3N0ZWZzdHVudHBpbG9vdCIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCdcbmltcG9ydCBIZWFkIGZyb20gJ25leHQvaGVhZCdcblxuZXhwb3J0IGRlZmF1bHQgY2xhc3MgRXJyb3IgZXh0ZW5kcyBSZWFjdC5Db21wb25lbnQge1xuICBzdGF0aWMgZ2V0SW5pdGlhbFByb3BzICh7IHJlcywgeGhyIH0pIHtcbiAgICBjb25zdCBzdGF0dXNDb2RlID0gcmVzID8gcmVzLnN0YXR1c0NvZGUgOiAoeGhyID8geGhyLnN0YXR1cyA6IG51bGwpXG4gICAgcmV0dXJuIHsgc3RhdHVzQ29kZSB9XG4gIH1cblxuICByZW5kZXIgKCkge1xuICAgIGNvbnN0IHsgc3RhdHVzQ29kZSB9ID0gdGhpcy5wcm9wc1xuICAgIGNvbnN0IHRpdGxlID0gc3RhdHVzQ29kZSA9PT0gNDA0XG4gICAgICA/ICdUaGlzIHBhZ2UgY291bGQgbm90IGJlIGZvdW5kJ1xuICAgICAgOiAoc3RhdHVzQ29kZSA/ICdJbnRlcm5hbCBTZXJ2ZXIgRXJyb3InIDogJ0FuIHVuZXhwZWN0ZWQgZXJyb3IgaGFzIG9jY3VycmVkJylcblxuICAgIHJldHVybiA8ZGl2IGNsYXNzTmFtZT0nZXJyb3InPlxuICAgICAgPEhlYWQ+XG4gICAgICAgIDxtZXRhIG5hbWU9J3ZpZXdwb3J0JyBjb250ZW50PSd3aWR0aD1kZXZpY2Utd2lkdGgsIGluaXRpYWwtc2NhbGU9MS4wJyAvPlxuICAgICAgPC9IZWFkPlxuICAgICAgPGRpdj5cbiAgICAgICAge3N0YXR1c0NvZGUgPyA8aDE+e3N0YXR1c0NvZGV9PC9oMT4gOiBudWxsfVxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT0nZGVzYyc+XG4gICAgICAgICAgPGgyPnt0aXRsZX0uPC9oMj5cbiAgICAgICAgPC9kaXY+XG4gICAgICA8L2Rpdj5cbiAgICAgIDxzdHlsZSBqc3ggZ2xvYmFsPntgXG4gICAgICAgIGJvZHkgeyBtYXJnaW46IDAgfVxuICAgICAgYH08L3N0eWxlPlxuICAgICAgPHN0eWxlIGpzeD57YFxuICAgICAgICAuZXJyb3Ige1xuICAgICAgICAgIGNvbG9yOiAjMDAwO1xuICAgICAgICAgIGJhY2tncm91bmQ6ICNmZmY7XG4gICAgICAgICAgZm9udC1mYW1pbHk6IC1hcHBsZS1zeXN0ZW0sIEJsaW5rTWFjU3lzdGVtRm9udCwgUm9ib3RvLCBcIlNlZ29lIFVJXCIsIFwiRmlyYSBTYW5zXCIsIEF2ZW5pciwgXCJIZWx2ZXRpY2EgTmV1ZVwiLCBcIkx1Y2lkYSBHcmFuZGVcIiwgc2Fucy1zZXJpZjtcbiAgICAgICAgICBoZWlnaHQ6IDEwMHZoO1xuICAgICAgICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICAgICAgICBkaXNwbGF5OiBmbGV4O1xuICAgICAgICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gICAgICAgICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICAgICAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgICAgICAgfVxuXG4gICAgICAgIC5kZXNjIHtcbiAgICAgICAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gICAgICAgICAgdGV4dC1hbGlnbjogbGVmdDtcbiAgICAgICAgICBsaW5lLWhlaWdodDogNDlweDtcbiAgICAgICAgICBoZWlnaHQ6IDQ5cHg7XG4gICAgICAgICAgdmVydGljYWwtYWxpZ246IG1pZGRsZTtcbiAgICAgICAgfVxuXG4gICAgICAgIGgxIHtcbiAgICAgICAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gICAgICAgICAgYm9yZGVyLXJpZ2h0OiAxcHggc29saWQgcmdiYSgwLCAwLCAwLC4zKTtcbiAgICAgICAgICBtYXJnaW46IDA7XG4gICAgICAgICAgbWFyZ2luLXJpZ2h0OiAyMHB4O1xuICAgICAgICAgIHBhZGRpbmc6IDEwcHggMjNweCAxMHB4IDA7XG4gICAgICAgICAgZm9udC1zaXplOiAyNHB4O1xuICAgICAgICAgIGZvbnQtd2VpZ2h0OiA1MDA7XG4gICAgICAgICAgdmVydGljYWwtYWxpZ246IHRvcDtcbiAgICAgICAgfVxuXG4gICAgICAgIGgyIHtcbiAgICAgICAgICBmb250LXNpemU6IDE0cHg7XG4gICAgICAgICAgZm9udC13ZWlnaHQ6IG5vcm1hbDtcbiAgICAgICAgICBtYXJnaW46IDA7XG4gICAgICAgICAgcGFkZGluZzogMDtcbiAgICAgICAgfVxuICAgICAgYH08L3N0eWxlPlxuICAgIDwvZGl2PlxuICB9XG59XG4iXX0= */\n/*@ sourceURL=node_modules\\next\\dist\\pages\\_error.js?entry */'
+      }));
     }
   }], [{
     key: 'getInitialProps',
@@ -63,48 +81,8 @@ var Error = function (_React$Component) {
       return { statusCode: statusCode };
     }
   }]);
+
   return Error;
 }(_react2.default.Component);
 
 exports.default = Error;
-
-var styles = {
-  error: (0, _css2.default)({
-    color: '#000',
-    background: '#fff',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-    position: 'absolute',
-    fontFamily: '-apple-system, BlinkMacSystemFont, Roboto, "Segoe UI", "Fira Sans", Avenir, "Helvetica Neue", "Lucida Grande", sans-serif',
-    textAlign: 'center',
-    paddingTop: '20%'
-  }),
-
-  desc: (0, _css2.default)({
-    display: 'inline-block',
-    textAlign: 'left',
-    lineHeight: '49px',
-    height: '49px',
-    verticalAlign: 'middle'
-  }),
-
-  h1: (0, _css2.default)({
-    display: 'inline-block',
-    borderRight: '1px solid rgba(0, 0, 0,.3)',
-    margin: 0,
-    marginRight: '20px',
-    padding: '10px 23px',
-    fontSize: '24px',
-    fontWeight: 500,
-    verticalAlign: 'top'
-  }),
-
-  h2: (0, _css2.default)({
-    fontSize: '14px',
-    fontWeight: 'normal',
-    margin: 0,
-    padding: 0
-  })
-};

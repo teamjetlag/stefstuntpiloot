@@ -4,13 +4,15 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "next",
+    "dev": "node server.js",
     "build": "next build",
-    "start": "next start"
+    "start": "NODE_ENV=production node server.js"
   },
   "dependencies": {
-    "next": "^1.2.3",
-    "react": "^15.4.2"
+    "express": "^4.14.1",
+    "next": "^2.0.0-beta",
+    "react": "^15.4.2",
+    "socket.io": "^1.7.2"
   },
   "devDependencies": {
     "eslint": "^3.15.0",
