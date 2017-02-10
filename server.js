@@ -33,6 +33,7 @@ app.prepare().then(() => {
       console.log('Scene clicked data received from client to server');
       console.log(data);
 
+      // Emit the scene update to all clients
       io.emit('sceneUpdate', data);
     });
 

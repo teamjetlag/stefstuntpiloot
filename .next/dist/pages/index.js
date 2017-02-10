@@ -42,6 +42,12 @@ var _os2 = _interopRequireDefault(_os);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// import aframe from 'aframe';
+// import physics from 'aframe-physics-system';
+// import applyImpulse from './../static/impulse.js';
+
+// physics.registerAll();
+
 var socket = void 0;
 var HOST = 'http://' + _os2.default.hostname();
 
@@ -53,11 +59,6 @@ if (HOST === 'http://localhost') {
 
 console.log('HOST: ' + HOST);
 
-socket.on('sceneUpdate', function (data) {
-  console.log('Scene update received from server to client');
-  console.log(data);
-});
-
 var Index = function (_React$Component) {
   (0, _inherits3.default)(Index, _React$Component);
 
@@ -68,8 +69,8 @@ var Index = function (_React$Component) {
   }
 
   (0, _createClass3.default)(Index, [{
-    key: 'emitSceneData',
-    value: function emitSceneData(event) {
+    key: 'handleSceneClick',
+    value: function handleSceneClick(event) {
       console.log('Scene was clicked');
       console.log(event);
 
@@ -86,33 +87,19 @@ var Index = function (_React$Component) {
       socket.on('hello', function (data) {
         console.log(data);
       });
-    }
-  }, {
-    key: 'handleData',
-    value: function handleData(data) {
-      console.log('Websocket data');
-      console.log(data);
+
+      socket.on('sceneUpdate', function (data) {
+        console.log('Scene update received from server to client');
+        console.log(data);
+
+        // TODO: Apply impulse
+        // applyImpulse();
+      });
     }
   }, {
     key: 'render',
     value: function render() {
-      return _react2.default.createElement('div', null, _react2.default.createElement(_head2.default, null, _react2.default.createElement('title', null, 'My page title'), _react2.default.createElement('meta', { name: 'viewport', content: 'initial-scale=1.0, width=device-width' }), _react2.default.createElement('script', { src: '/static/aframe.min.js' })), _react2.default.createElement('a-scene', { physics: 'debug: true', id: 'thescene', onClick: this.emitSceneData }, _react2.default.createElement('a-plane', { 'static-body': true, position: '0 0 -8', rotation: '-90 0 0', width: '10', height: '10', color: '#7BC8A4' }), _react2.default.createElement('a-entity', { 'dynamic-body': 'shape: box', id: 'lucifer', position: '0 0.5 -5', rotation: '0 0 0', color: '#4CC3D9', depth: '0.5', heigt: '0.5', width: '5' }, _react2.default.createElement('a-animation', {
-        attribute: 'rotation',
-        dur: '10000',
-        fill: 'forwards',
-        easing: 'linear',
-        to: '0 360 0',
-        repeat: 'indefinite'
-      }), _react2.default.createElement('a-cylinder', { id: 'cylinder', position: '0 0 0' }), _react2.default.createElement('a-entity', { id: 'move', ref: this.test }, _react2.default.createElement('a-box', { id: 'hefboom', position: '2 0.5 0', rotation: '0 0 0', color: '#4CC3D9', depth: '0.5', height: '0.5', width: '4' }), _react2.default.createElement('a-sphere', { id: 'stef', position: '4 0.5 0', radius: '0.75', color: '#EF2D5E' }), _react2.default.createElement('a-animation', {
-        id: 'genius',
-        attribute: 'rotation',
-        begin: 'up',
-        dur: '1000',
-        direction: 'alternate',
-        fill: 'forwards',
-        to: '0 0 65',
-        repeat: '1'
-      })))));
+      return _react2.default.createElement('div', null, _react2.default.createElement(_head2.default, null, _react2.default.createElement('title', null, 'My page title'), _react2.default.createElement('meta', { name: 'viewport', content: 'initial-scale=1.0, width=device-width' }), _react2.default.createElement('script', { src: '/static/aframe.min.js' }), _react2.default.createElement('script', { src: '/static/aframe-physics-system.js' })), _react2.default.createElement('a-scene', { physics: 'debug: false; friction:0.0001', 'physics-world': '0 -9.8 0', onClick: this.handleSceneClick }, _react2.default.createElement('a-entity', { rotation: '-45 0 0', position: '0 10 16' }, _react2.default.createElement('a-camera', null)), _react2.default.createElement('a-plane', { 'static-body': true, position: '0 -1 0', rotation: '-90 0 0', width: '20', height: '20', color: '#7BC8A4' }), _react2.default.createElement('a-cylinder', { id: 'boxA', color: 'white', 'static-body': true, position: '0 0 0', width: '0.5', height: '1', depth: '0.5' }), _react2.default.createElement('a-sphere', { id: 'boxB', color: 'red', 'dynamic-body': 'mass: 20', position: '0 -5 0.2', radius: '0.5' }), _react2.default.createElement('a-entity', null, _react2.default.createElement('a-entity', { position: '2 -0.5 0' }, _react2.default.createElement('a-entity', { position: '1 -1.85 0', rotation: '0 0 25' }, _react2.default.createElement('a-box', { 'static-body': true, position: '4 0 0.1', depth: '0.1', width: '3', color: 'yellow' }), _react2.default.createElement('a-box', { 'static-body': true, position: '4 -0.1 0', depth: '0.14', height: '0.8', width: '3', color: 'yellow' }), _react2.default.createElement('a-box', { 'static-body': true, position: '4 0 -0.1', depth: '0.1', width: '3', color: 'yellow' }), _react2.default.createElement('a-box', { 'static-body': true, position: '2.5 0 0', depth: '0.24', height: '1.3', width: '0.1', color: 'yellow' })), _react2.default.createElement('a-cylinder', { 'dynamic-body': true, rotation: '90 0 0', mass: '5', position: '3.5 0.5 0', color: 'green', height: '0.1', radius: '0.4' }), _react2.default.createElement('a-cylinder', { 'dynamic-body': true, rotation: '90 0 0', mass: '5', position: '4.5 1 0', color: 'blue', height: '0.1', radius: '0.4' }), _react2.default.createElement('a-cylinder', { 'dynamic-body': true, rotation: '90 0 0', mass: '5', position: '5.5 1.5 0', color: 'orange', height: '0.1', radius: '0.4' }))), _react2.default.createElement('a-entity', { rotation: '0 180 0' }, _react2.default.createElement('a-entity', { position: '2 -0.5 0' }, _react2.default.createElement('a-entity', { position: '1 -1.85 0', rotation: '0 0 25' }, _react2.default.createElement('a-box', { 'static-body': true, position: '4 0 0.1', depth: '0.1', width: '3', color: 'yellow' }), _react2.default.createElement('a-box', { 'static-body': true, position: '4 -0.1 0', depth: '0.14', height: '0.8', width: '3', color: 'yellow' }), _react2.default.createElement('a-box', { 'static-body': true, position: '4 0 -0.1', depth: '0.1', width: '3', color: 'yellow' }), _react2.default.createElement('a-box', { 'static-body': true, position: '2.5 0 0', depth: '0.24', height: '1.3', width: '0.1', color: 'yellow' })), _react2.default.createElement('a-cylinder', { 'dynamic-body': true, rotation: '90 180 0', mass: '5', position: '3.5 0.5 0', color: 'green', height: '0.1', radius: '0.4' }), _react2.default.createElement('a-cylinder', { 'dynamic-body': true, rotation: '90 180 0', mass: '5', position: '4.5 1 0', color: 'blue', height: '0.1', radius: '0.4' }), _react2.default.createElement('a-cylinder', { 'dynamic-body': true, rotation: '90 180 0', mass: '5', position: '5.5 1.5 0', color: 'orange', height: '0.1', radius: '0.4' })))), _react2.default.createElement('script', { src: '/static/script.js' }));
     }
   }]);
 
