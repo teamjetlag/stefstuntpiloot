@@ -1,10 +1,10 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _react = require("D:\\Projects\\stefstuntpiloot\\node_modules\\react\\react.js");
+var _react = require('D:\\Projects\\stefstuntpiloot\\node_modules\\react\\react.js');
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -12,9 +12,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = function () {
   return _react2.default.createElement(
-    "div",
+    'div',
     null,
-    "Welcome to next.js!"
+    'Welcome to next.js!'
   );
 };
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkQ6XFxQcm9qZWN0c1xcc3RlZnN0dW50cGlsb290XFxwYWdlc1xcaW5kZXguanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7O2tCQUFlO0FBQUEsU0FDYjtBQUFBO0FBQUE7QUFBQTtBQUFBLEdBRGE7QUFBQSxDIiwiZmlsZSI6ImluZGV4LmpzIiwic291cmNlUm9vdCI6IkQ6L1Byb2plY3RzL3N0ZWZzdHVudHBpbG9vdCIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBkZWZhdWx0ICgpID0+IChcbiAgPGRpdj5XZWxjb21lIHRvIG5leHQuanMhPC9kaXY+XG4pXG4iXX0=
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkQ6XFxQcm9qZWN0c1xcc3RlZnN0dW50cGlsb290XFxwYWdlc1xcaW5kZXguanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7O0FBQUE7Ozs7OztrQkFFZTtBQUFBLFNBQ2I7QUFBQTtBQUFBO0FBQUE7QUFBQSxHQURhO0FBQUEsQyIsImZpbGUiOiJpbmRleC5qcyIsInNvdXJjZVJvb3QiOiJEOi9Qcm9qZWN0cy9zdGVmc3R1bnRwaWxvb3QiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnO1xuXG5leHBvcnQgZGVmYXVsdCAoKSA9PiAoXG4gIDxkaXY+V2VsY29tZSB0byBuZXh0LmpzITwvZGl2PlxuKTtcbiJdfQ==

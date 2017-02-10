@@ -1,9 +1,6 @@
 module.exports = {
   root: true,
-  extends: 'eslint-config-airbnb-base',
-  parserOptions: {
-    sourceType: 'script'
-  },
+  extends: 'eslint-config-airbnb',
   rules: {
     /**
      * Errors
@@ -47,6 +44,8 @@ module.exports = {
     // Rule: require or disallow a space before function opening parenthesis
     // Docs: http://eslint.org/docs/rules/space-before-function-paren
     // Airbnb: 'space-before-function-paren': [2, { 'anonymous': 'always', 'named': 'never' }]
-    'space-before-function-paren': [2, 'never']
+    'space-before-function-paren': [2, 'never'],
+
+    'react/jsx-filename-extension': 0
   }
 };
