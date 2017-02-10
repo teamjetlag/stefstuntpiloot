@@ -17,17 +17,8 @@ app.prepare().then(() => {
     handle(req, res);
   });
 
-  // Start the express server
-  expressServer.listen(3000, (err) => {
-    if (err) {
-      throw err;
-    }
-
-    return console.log('> Express server ready on http://localhost:3000');
-  });
-
-  // Create HTTP server for the websocket
-  const httpServer = http.createServer();
+  // Create HTTP server with the express server for the websocket
+  const httpServer = http.Server(expressServer);
   const io = socketIo(httpServer);
 
   // Handle the websocket connection
@@ -43,11 +34,11 @@ app.prepare().then(() => {
   });
 
   // Start the HTTP server
-  httpServer.listen(3030, (err) => {
+  httpServer.listen(3000, (err) => {
     if (err) {
       throw err;
     }
 
-    return console.log('> Websocket server ready on http://localhost:3030');
+    return console.log('> Express server ready on http://localhost:3000');
   });
 });
