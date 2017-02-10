@@ -1,23 +1,26 @@
 {
-  "name": "aframe-hello-world-boilerplate",
-  "description": "Boilerplate with A-Frame's 'Hello, World!' of WebVR.",
-  "version": "0.3.0",
+  "name": "stef-stuntpiloot",
+  "description": "Team Jetleg",
+  "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "budo --live --verbose --port 3000 --open",
-    "deploy": "ghpages",
-    "ghpages": "ghpages"
+    "dev": "node server.js",
+    "prestart": "next build",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "aframe": "^0.5.0",
+    "express": "^4.14.1",
+    "next": "^2.0.0-beta",
+    "react": "^15.4.2",
+    "socket.io": "^1.7.2",
+    "socket.io-client": "^1.7.2"
   },
   "devDependencies": {
-    "budo": "^7.0.0",
-    "ghpages": "0.0.3"
-  },
-  "keywords": [
-    "aframe",
-    "aframe-example",
-    "aframe-boilerplate",
-    "aframe-scene",
-    "webvr",
-    "vr"
-  ]
+    "eslint": "^3.15.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.9.0"
+  }
 }
