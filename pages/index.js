@@ -1,8 +1,13 @@
 import React from 'react';
 import Head from 'next/head';
 import io from 'socket.io-client';
+import os from 'os';
 
-const HOST = location.origin.replace(/^http/, 'ws');
+console.log(`HOST : ${os.hostname()}`);
+
+// console.log('Window hostname: '+ window.location.hostname);
+
+const HOST = `http://${os.hostname()}`;
 const socket = io(HOST);
 
 console.log(`HOST: ${HOST}`);

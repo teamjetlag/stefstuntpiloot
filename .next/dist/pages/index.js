@@ -36,9 +36,17 @@ var _socket = require('socket.io-client');
 
 var _socket2 = _interopRequireDefault(_socket);
 
+var _os = require('os');
+
+var _os2 = _interopRequireDefault(_os);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var HOST = location.origin.replace(/^http/, 'ws');
+console.log('HOST : ' + _os2.default.hostname());
+
+// console.log('Window hostname: '+ window.location.hostname);
+
+var HOST = 'http://' + _os2.default.hostname();
 var socket = (0, _socket2.default)(HOST);
 
 console.log('HOST: ' + HOST);
