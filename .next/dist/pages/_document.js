@@ -1,3 +1,3 @@
 'use strict';
 
-module.exports = require('D:\\Projects\\stefstuntpiloot\\node_modules\\next\\dist\\server\\document.js');
+module.exports = require('/Users/wveelenturf/projects/capathon/stefstuntpiloot/node_modules/next/dist/server/document.js');
