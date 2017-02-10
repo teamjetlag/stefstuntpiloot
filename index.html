@@ -4,37 +4,40 @@
     <meta charset="utf-8">
     <title>Hello, World! - A-Frame</title>
     <meta name="description" content="Hello, World! - A-Frame">
-    <script src="https://aframe.io/releases/0.3.2/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/0.4.0/aframe.min.js"></script>
+    <!-- <script src="https://unpkg.com/aframe-physics-system@1.2.1/dist/aframe-physics-system.min.js"></script> -->
+  </head>
   </head>
   <body>
-    <a-scene>
-      <a-assets>
-        <a-asset-item id="spitfire" src="spitfire.dae"></a-asset-item>
-        <a-asset-item id="porco-rosso" src="porco-rosso.dae"></a-asset-item>
-        <a-asset-item id="porco-rosso-plane" src="porco-rosso-plane.dae"></a-asset-item>
-      </a-assets>
-      <a-entity position="0 1 -5" rotation="0 0 0" color="#4CC3D9" depth="0.5" heigt="0.5" width="5" onclick="alert('123')">
-        <a-animation attribute="rotation"
-               dur="10000"
-               fill="forwards"
-               easing="linear"
-               to="0 360 0"
-               repeat="indefinite">
-        </a-animation>
-        <a-box position="1.5 0 0" rotation="0 0 0" color="#4CC3D9" depth="0.5" heigth="0.5" width="3"></a-box>
-        <a-sphere position="3 0 0" radius="0.75" color="#EF2D5E"></a-sphere>
-        <a-box position="-1.5 0 0" rotation="0 0 0" color="#4CC3D9" depth="0.5" heigth="0.5" width="3"></a-box>
-        <a-sphere position="-3 0 0" radius="0.75" color="#EF2D5E"></a-sphere>
-        <a-box position="0 0 1.5" rotation="0 90 0" color="#4CC3D9" depth="0.5" heigt="0.5" width="3"></a-box>
-        <a-sphere position="0 0 3" radius="0.75" color="#EF2D5E"></a-sphere>
-        <a-box position="0 0 -1.5" rotation="0 90 0" color="#4CC3D9" depth="0.5" heigt="0.5" width="3"></a-box>
-        <a-sphere position="0 0 -3" radius="0.75" color="#EF2D5E"></a-sphere>
-        
-      </a-entity>
-      <a-plane position="0 0 -5" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-      <a-sky color="#ECECEC"></a-sky>
-      <a-entity collada-model="#porco-rosso"></a-entity>
-      <a-entity collada-model="#porco-rosso-plane"></a-entity>
-    </a-scene>
+    <a-scene physics="debug: true">
+          <a-plane static-body position="0 0 -8" rotation="-90 0 0" width="10" height="10" color="#7BC8A4"></a-plane>
+          <a-entity dynamic-body="shape: box" id="lucifer" position="0 0.5 -5" rotation="0 0 0" color="#4CC3D9" depth="0.5" heigt="0.5" width="5">
+            <a-animation attribute="rotation"
+                   dur="10000"
+                   fill="forwards"
+                   easing="linear"
+                   to="0 360 0"
+                   repeat="indefinite">
+            </a-animation>
+            <a-cylinder id="cylinder" position="0 0 0"></a-cylinder>
+            <a-entity>
+              <a-box id="hefboom" position="2 0.5 0" rotation="0 0 0" color="#4CC3D9" depth="0.5" height="0.5" width="4">
+              </a-box>
+              <a-sphere id="stef" position="4 0.5 0" radius="0.75" color="#EF2D5E">
+              </a-sphere>
+              <a-animation attribute="rotation"
+                     dur="2000"
+                     direction="alternate"
+                     fill="forwards"
+                     to="0 0 45"
+                     repeat="indefinite">
+              </a-animation>
+            </a-entity>
+          </a-entity>
+        </a-scene>
+    <script>
+
+
+    </script>
   </body>
 </html>
