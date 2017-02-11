@@ -40,7 +40,17 @@
         console.log(data);
 
         // Apply impulse
-        applyImpulse(document.querySelector('#boxB'));
+        var boxB = document.querySelector('#boxB');
+        console.log(boxB.getAttribute('position').x);
+        console.log(boxB.getAttribute('position').z);
+        var posx = boxB.getAttribute('position').x;
+        var posz = boxB.getAttribute('position').z;
+        if(
+          (posx < -4 && (posz > -1.5 && posz <0)) ||
+          ((posx > -1.5 && posx < 0) && posz > 4) ||
+          (posx > 4 && (posz < 1.5 && posz > 0)) ||
+          ((posx < 1.5 && posx > 0) && posz < -4)
+        ){applyImpulse(boxB);}
       });
 
       // Create a new game
@@ -55,6 +65,7 @@
     </header>
 
     <a-scene physics="debug: true; friction: 0.002;" physics-world="0 -9.8 0" onClick="handleSceneClick()">
+
       <a-entity rotation="-45 0 0" position="0 5 8">
         <a-camera></a-camera>
       </a-entity>
