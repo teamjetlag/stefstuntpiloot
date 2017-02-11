@@ -24,9 +24,8 @@ class Index extends React.Component {
 
   };
 
-  handleSceneClick(event) {
+  handleSceneClick() {
     console.log('Scene was clicked');
-    console.log(event);
 
     socket.emit('sceneClicked', {
       data: {
@@ -34,7 +33,6 @@ class Index extends React.Component {
         timeStamp: Date.now()
       }
     });
-
   }
 
   componentDidMount() {

@@ -4,31 +4,31 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _getPrototypeOf = require('/Users/axel/Projects/Capathon/stefstuntpiloot/node_modules/babel-runtime/core-js/object/get-prototype-of');
+var _getPrototypeOf = require('D:\\Projects\\stefstuntpiloot\\node_modules\\babel-runtime/core-js/object/get-prototype-of');
 
 var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
 
-var _classCallCheck2 = require('/Users/axel/Projects/Capathon/stefstuntpiloot/node_modules/babel-runtime/helpers/classCallCheck');
+var _classCallCheck2 = require('D:\\Projects\\stefstuntpiloot\\node_modules\\babel-runtime/helpers/classCallCheck');
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _createClass2 = require('/Users/axel/Projects/Capathon/stefstuntpiloot/node_modules/babel-runtime/helpers/createClass');
+var _createClass2 = require('D:\\Projects\\stefstuntpiloot\\node_modules\\babel-runtime/helpers/createClass');
 
 var _createClass3 = _interopRequireDefault(_createClass2);
 
-var _possibleConstructorReturn2 = require('/Users/axel/Projects/Capathon/stefstuntpiloot/node_modules/babel-runtime/helpers/possibleConstructorReturn');
+var _possibleConstructorReturn2 = require('D:\\Projects\\stefstuntpiloot\\node_modules\\babel-runtime/helpers/possibleConstructorReturn');
 
 var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = require('/Users/axel/Projects/Capathon/stefstuntpiloot/node_modules/babel-runtime/helpers/inherits');
+var _inherits2 = require('D:\\Projects\\stefstuntpiloot\\node_modules\\babel-runtime/helpers/inherits');
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
-var _react = require('/Users/axel/Projects/Capathon/stefstuntpiloot/node_modules/react/react.js');
+var _react = require('D:\\Projects\\stefstuntpiloot\\node_modules\\react\\react.js');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _head = require('/Users/axel/Projects/Capathon/stefstuntpiloot/node_modules/next/dist/lib/head.js');
+var _head = require('D:\\Projects\\stefstuntpiloot\\node_modules\\next\\dist\\lib\\head.js');
 
 var _head2 = _interopRequireDefault(_head);
 
@@ -81,9 +81,8 @@ var Index = function (_React$Component) {
 
   (0, _createClass3.default)(Index, [{
     key: 'handleSceneClick',
-    value: function handleSceneClick(event) {
+    value: function handleSceneClick() {
       console.log('Scene was clicked');
-      console.log(event);
 
       socket.emit('sceneClicked', {
         data: {
