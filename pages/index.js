@@ -41,12 +41,21 @@ class Index extends React.Component {
       location.reload();
     });
 
+    // Stunt event
     socket.on('stuntEvent', (data) => {
       console.log('Stunt event received at index.j');
       console.log(data);
 
       // Apply impulse
       applyImpulse(boxB);
+    });
+
+    // Banana event
+    socket.on('bananaEvent', (data) => {
+      console.log('Banana event received at index.html');
+      console.log(data);
+
+      // TODO: Herre's banana
     });
   }
 

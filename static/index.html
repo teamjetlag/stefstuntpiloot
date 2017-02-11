@@ -16,31 +16,39 @@
 
       var socket = io(host);
 
-      // Handle scene click
-      function handleSceneClick() {
-        console.log('Scene was clicked');
-
-        socket.emit('sceneClicked', {
-          data: {
-            event: 'Scene clicked',
-            timeStamp: Date.now()
-          }
-        });
-      }
-
-      // Appply impulse for element
+      // Apply impulse for element
       function applyImpulse(element) {
         console.log('Applying impulse');
         element.body.applyImpulse(new CANNON.Vec3(0, 150, 0), new CANNON.Vec3().copy(element.getAttribute('position')));
       }
 
-      // Check for scene update event
-      socket.on('sceneUpdate', (data) => {
-        console.log('Scene update received from server to client');
+      // Stunt event
+      socket.on('stuntEvent', (data) => {
+        console.log('Stunt event received at index.j');
         console.log(data);
 
         // Apply impulse
-        applyImpulse(document.querySelector('#boxB'));
+        var boxB = document.querySelector('#boxB');
+        console.log(boxB.getAttribute('position').x);
+        console.log(boxB.getAttribute('position').z);
+        var posx = boxB.getAttribute('position').x;
+        var posz = boxB.getAttribute('position').z;
+        if(
+          (posx < -4 && (posz > -1.5 && posz <0)) ||
+          ((posx > -1.5 && posx < 0) && posz > 4) ||
+          (posx > 4 && (posz < 1.5 && posz > 0)) ||
+          ((posx < 1.5 && posx > 0) && posz < -4)
+        ){
+          applyImpulse(boxB);
+        }
+      });
+
+      // Banana event
+      socket.on('bananaEvent', (data) => {
+        console.log('Banana event received at index.html');
+        console.log(data);
+
+        // TODO: Herre's banana
       });
 
       // Create a new game
@@ -54,7 +62,8 @@
       <button onClick="newGame()">New Game</button>
     </header>
 
-    <a-scene physics="debug: true; friction: 0.002;" physics-world="0 -9.8 0" onClick="handleSceneClick()">
+    <a-scene physics="debug: true; friction: 0.002;" physics-world="0 -9.8 0">
+
       <a-entity rotation="-45 0 0" position="0 5 8">
         <a-camera></a-camera>
       </a-entity>
