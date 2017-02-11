@@ -45,6 +45,8 @@ class client extends React.Component {
           <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
           <script src="/static/aframe.min.js"></script>
           <script src="/static/aframe-physics-system.js"></script>
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"/>
+
         </Head>
         <style jsx>{`
           .box {
@@ -65,11 +67,11 @@ class client extends React.Component {
           }
         `}</style>
         <button onClick={this.newGame}>New Game</button>
-        <div className="box stef" onClick={() => this.emitEvent('stuntEvent')}>
+        <div className="box stef animated infinite swing" onClick={() => this.emitEvent('stuntEvent')}>
           <img src="" />
 
         </div>
-        <div className="box banana" onClick={() => this.emitEvent('bananaEvent')}>
+        <div className="box banana animated infinite pulse" onClick={() => this.emitEvent('bananaEvent')}>
 
         </div>
       </div>
