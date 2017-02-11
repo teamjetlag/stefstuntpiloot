@@ -1,120 +1,127 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     <title>My page title</title>
-    <script src="aframe.min.js"></script>
-    <script src="aframe-physics-system.js"></script>
+    <script src="https://aframe.io/releases/0.4.0/aframe.js"></script>
+    <script src="https://unpkg.com/aframe-physics-system@1.2.1/dist/aframe-physics-system.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script>
-      // Setup the socket
-      var host = window.location.host;
-      if (host === 'localhost') {
+    // Setup the socket
+    var host = window.location.host;
+    if (host === 'localhost') {
         host = host + ':3000';
-      }
+    }
 
-      var socket = io(host);
+    var socket = io(host);
 
-      // Handle scene click
-      function handleSceneClick() {
+    // Handle scene click
+    function handleSceneClick() {
         console.log('Scene was clicked');
 
         socket.emit('sceneClicked', {
-          data: {
-            event: 'Scene clicked',
-            timeStamp: Date.now()
-          }
+            data: {
+                event: 'Scene clicked',
+                timeStamp: Date.now()
+            }
         });
-      }
+    }
 
-      // Appply impulse for element
-      function applyImpulse(element) {
+    // Appply impulse for element
+    function applyImpulse(element) {
         console.log('Applying impulse');
         element.body.applyImpulse(new CANNON.Vec3(0, 150, 0), new CANNON.Vec3().copy(element.getAttribute('position')));
-      }
 
-      // Check for scene update event
-      socket.on('sceneUpdate', (data) => {
+        var rndX = (20 * Math.random()) - 10;
+        var rndZ = (20 * Math.random()) - 10;
+
+        var banaan = document.createElement('a-obj-model');
+        banaan.setAttribute('dynamic-body', "shape: box");
+        banaan.setAttribute('src', "#banaan");
+        banaan.setAttribute('material', "shader: flat; color: #ffff00;");
+        banaan.setAttribute('mass', 0.5);
+        banaan.setAttribute('position', rndX + " 5 " + rndZ);
+        banaan.setAttribute('scale', "0.1 0.1 0.1");
+        banaan.setAttribute('rotation', "-90 0 0");
+        document.querySelector('a-scene').appendChild(banaan);
+    }
+    // Check for scene update event
+    socket.on('sceneUpdate', (data) => {
         console.log('Scene update received from server to client');
         console.log(data);
 
         // Apply impulse
         applyImpulse(document.querySelector('#boxB'));
-      });
+    });
 
-      // Create a new game
-      function newGame() {
+    // Create a new game
+    function newGame() {
         socket.emit('newGame')
-      }
+    }
     </script>
-  </head>
-  <body>
+</head>
+
+<body>
     <header>
-      <button onClick="newGame()">New Game</button>
+        <button onClick="newGame()">New Game</button>
     </header>
-
-    <a-scene physics="debug: true; friction: 0.002;" physics-world="0 -9.8 0" onClick="handleSceneClick()">
-      <a-entity rotation="-45 0 0" position="0 5 8">
-        <a-camera></a-camera>
-      </a-entity>
-      <a-plane static-body position="0 -1 0" rotation="-90 0 0" width="20" height="20" color="#7BC8A4"></a-plane>
-      <!-- Dynamic box -->
-      <a-cylinder id="boxA" color="white" static-body position="0 0 0" width="0.5" height="1" depth="0.5"></a-cylinder>
-      <!-- Dynamic box -->
-      <a-sphere id="boxB" color="red" dynamic-body="mass: 50" position="0 -5 0.2" radius="0.5"></a-sphere>
-
-      <!-- <a-entity slider="width: 0.5; height: 0.25; depth: 1; color: orange" position="5 1 0"></a-entity> -->
-
-      <a-entity position="0.85 -0.35 0">
-        <a-entity position="2 -2 0" rotation="0 0 25">
-          <a-box static-body position="4 0 0.12" depth="0.1" width="3" color="yellow"></a-box>
-          <a-box static-body position="4 -0.1 0" depth="0.24" height="0.8" width="3" color="yellow"></a-box>
-          <a-box static-body position="4 0 -0.12" depth="0.1" width="3" color="yellow"></a-box>
-          <a-box static-body position="2.5 0 0" depth="0.24" height="1.3" width="0.1" color="yellow"></a-box>
+    <a-scene id="scene" physics="debug: false; friction: 0.002;" physics-world="0 -9.8 0" onClick="handleSceneClick()">
+        <a-assets>
+            <a-asset-item id="banaan" src="banaan.obj"></a-asset-item>
+        </a-assets>
+        <a-entity rotation="-45 0 0" position="0 5 8">
+            <a-camera></a-camera>
         </a-entity>
-        <a-cylinder dynamic-body mass="2" position="4.5 0.5 0" color="green" height=0.1 radius="0.4" rotation="0 90 90"></a-cylinder>
-        <a-cylinder dynamic-body mass="2" position="5   1   0" color="blue" height=0.1 radius="0.4" rotation="0 90 90"></a-cylinder>
-        <a-cylinder dynamic-body mass="2" position="5.5 1.5 0" color="orange" height=0.1 radius="0.4" rotation="0 90 90"></a-cylinder>
-      </a-entity>
+        <a-plane static-body position="0 -1 0" rotation="-90 0 0" width="20" height="20" color="#7BC8A4"></a-plane>
 
-      <a-entity position="-0.85 -0.35 0">
-        <a-entity position="-2 -2 0" rotation="0 0 -25">
-          <a-box static-body position="-4 0 0.12" depth="0.1" width="3" color="yellow"></a-box>
-          <a-box static-body position="-4 -0.1 0" depth="0.24" height="0.8" width="3" color="yellow"></a-box>
-          <a-box static-body position="-4 0 -0.12" depth="0.1" width="3" color="yellow"></a-box>
-          <a-box static-body position="-2.5 0 0" depth="0.24" height="1.3" width="0.1" color="yellow"></a-box>
+        <a-entity position="0.85 -0.35 0">
+            <a-entity position="2 -2 0" rotation="0 0 25">
+                <a-box static-body position="4 0 0.12" depth="0.1" width="3" color="yellow"></a-box>
+                <a-box static-body position="4 -0.1 0" depth="0.24" height="0.8" width="3" color="yellow"></a-box>
+                <a-box static-body position="4 0 -0.12" depth="0.1" width="3" color="yellow"></a-box>
+                <a-box static-body position="2.5 0 0" depth="0.24" height="1.3" width="0.1" color="yellow"></a-box>
+            </a-entity>
+            <a-cylinder dynamic-body mass="2" position="4.5 0.5 0" color="green" height=0.1 radius="0.4" rotation="0 90 90"></a-cylinder>
+            <a-cylinder dynamic-body mass="2" position="5   1   0" color="blue" height=0.1 radius="0.4" rotation="0 90 90"></a-cylinder>
+            <a-cylinder dynamic-body mass="2" position="5.5 1.5 0" color="orange" height=0.1 radius="0.4" rotation="0 90 90"></a-cylinder>
         </a-entity>
-        <a-cylinder dynamic-body mass="2" position="-4.5 0.5 0" color="green" height=0.1 radius="0.4" rotation="0 90 90"></a-cylinder>
-        <a-cylinder dynamic-body mass="2" position="-5   1   0" color="blue" height=0.1 radius="0.4" rotation="0 90 90"></a-cylinder>
-        <a-cylinder dynamic-body mass="2" position="-5.5 1.5 0" color="orange" height=0.1 radius="0.4" rotation="0 90 90"></a-cylinder>
-      </a-entity>
-
-      <a-entity position="0 -0.35 -0.85">
-        <a-entity position="0 -2 -2" rotation="0 90 25">
-          <a-box static-body position="4 0 0.12" depth="0.1" width="3" color="yellow"></a-box>
-          <a-box static-body position="4 -0.1 0" depth="0.24" height="0.8" width="3" color="yellow"></a-box>
-          <a-box static-body position="4 0 -0.12" depth="0.1" width="3" color="yellow"></a-box>
-          <a-box static-body position="2.5 0 0" depth="0.24" height="1.3" width="0.1" color="yellow"></a-box>
+        <a-entity position="-0.85 -0.35 0">
+            <a-entity position="-2 -2 0" rotation="0 0 -25">
+                <a-box static-body position="-4 0 0.12" depth="0.1" width="3" color="yellow"></a-box>
+                <a-box static-body position="-4 -0.1 0" depth="0.24" height="0.8" width="3" color="yellow"></a-box>
+                <a-box static-body position="-4 0 -0.12" depth="0.1" width="3" color="yellow"></a-box>
+                <a-box static-body position="-2.5 0 0" depth="0.24" height="1.3" width="0.1" color="yellow"></a-box>
+            </a-entity>
+            <a-cylinder dynamic-body mass="2" position="-4.5 0.5 0" color="green" height=0.1 radius="0.4" rotation="0 90 90"></a-cylinder>
+            <a-cylinder dynamic-body mass="2" position="-5   1   0" color="blue" height=0.1 radius="0.4" rotation="0 90 90"></a-cylinder>
+            <a-cylinder dynamic-body mass="2" position="-5.5 1.5 0" color="orange" height=0.1 radius="0.4" rotation="0 90 90"></a-cylinder>
         </a-entity>
-        <a-cylinder dynamic-body mass="2" position="0 0.5 -4.5" color="green" height=0.1 radius="0.4" rotation="0 0 90"></a-cylinder>
-        <a-cylinder dynamic-body mass="2" position="0 1   -5" color="blue" height=0.1 radius="0.4" rotation="0 0 90"></a-cylinder>
-        <a-cylinder dynamic-body mass="2" position="0 1.5 -5.5" color="orange" height=0.1 radius="0.4" rotation="0 0 90"></a-cylinder>
-      </a-entity>
-
-      <a-entity position="0 -0.35 0.85">
-        <a-entity position="0 -2 2" rotation="0 -90 25">
-          <a-box static-body position="4 0 0.12" depth="0.1" width="3" color="yellow"></a-box>
-          <a-box static-body position="4 -0.1 0" depth="0.24" height="0.8" width="3" color="yellow"></a-box>
-          <a-box static-body position="4 0 -0.12" depth="0.1" width="3" color="yellow"></a-box>
-          <a-box static-body position="2.5 0 0" depth="0.24" height="1.3" width="0.1" color="yellow"></a-box>
+        <a-entity position="0 -0.35 -0.85">
+            <a-entity position="0 -2 -2" rotation="0 90 25">
+                <a-box static-body position="4 0 0.12" depth="0.1" width="3" color="yellow"></a-box>
+                <a-box static-body position="4 -0.1 0" depth="0.24" height="0.8" width="3" color="yellow"></a-box>
+                <a-box static-body position="4 0 -0.12" depth="0.1" width="3" color="yellow"></a-box>
+                <a-box static-body position="2.5 0 0" depth="0.24" height="1.3" width="0.1" color="yellow"></a-box>
+            </a-entity>
+            <a-cylinder dynamic-body mass="2" position="0 0.5 -4.5" color="green" height=0.1 radius="0.4" rotation="0 0 90"></a-cylinder>
+            <a-cylinder dynamic-body mass="2" position="0 1   -5" color="blue" height=0.1 radius="0.4" rotation="0 0 90"></a-cylinder>
+            <a-cylinder dynamic-body mass="2" position="0 1.5 -5.5" color="orange" height=0.1 radius="0.4" rotation="0 0 90"></a-cylinder>
         </a-entity>
-        <a-cylinder dynamic-body mass="2" position="0 0.5 4.5" color="green" height=0.1 radius="0.4" rotation="0 0 90"></a-cylinder>
-        <a-cylinder dynamic-body mass="2" position="0 1   5" color="blue" height=0.1 radius="0.4" rotation="0 0 90"></a-cylinder>
-        <a-cylinder dynamic-body mass="2" position="0 1.5 5.5" color="orange" height=0.1 radius="0.4" rotation="0 0 90"></a-cylinder>
-      </a-entity>
+        <a-entity position="0 -0.35 0.85">
+            <a-entity position="0 -2 2" rotation="0 -90 25">
+                <a-box static-body position="4 0 0.12" depth="0.1" width="3" color="yellow"></a-box>
+                <a-box static-body position="4 -0.1 0" depth="0.24" height="0.8" width="3" color="yellow"></a-box>
+                <a-box static-body position="4 0 -0.12" depth="0.1" width="3" color="yellow"></a-box>
+                <a-box static-body position="2.5 0 0" depth="0.24" height="1.3" width="0.1" color="yellow"></a-box>
+            </a-entity>
+            <a-cylinder dynamic-body mass="2" position="0 0.5 4.5" color="green" height=0.1 radius="0.4" rotation="0 0 90"></a-cylinder>
+            <a-cylinder dynamic-body mass="2" position="0 1   5" color="blue" height=0.1 radius="0.4" rotation="0 0 90"></a-cylinder>
+            <a-cylinder dynamic-body mass="2" position="0 1.5 5.5" color="orange" height=0.1 radius="0.4" rotation="0 0 90"></a-cylinder>
+        </a-entity>
     </a-scene>
-
     <script src="script.js"></script>
-  </body>
+</body>
+
 </html>
