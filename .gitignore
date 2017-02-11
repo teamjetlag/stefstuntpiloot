@@ -38,6 +38,7 @@ Thumbs.db
 
 # Generated folders #
 #####################
+.next/
 node_modules/
 
 # IDE #
