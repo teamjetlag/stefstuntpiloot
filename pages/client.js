@@ -1,6 +1,7 @@
 import React from 'react';
 import io from 'socket.io-client';
 import os from 'os';
+import _JSXStyle from 'styled-jsx/style'
 
 let socket;
 const HOST = `http://${os.hostname()}`;
@@ -34,9 +35,32 @@ class client extends React.Component {
 
   render() {
     return (
-      <div>
-        <button onClick={() => this.emitEvent('stuntEvent')}>STUNT</button>
-        <button onClick={() => this.emitEvent('bananaEvent')}>BANANA</button>
+      <div >
+        <style jsx>{`
+          .box {
+            cursor: pointer;
+            float: left;
+            width: 50%;
+            height:500px;
+          }
+          .stef{
+            background-image: url(./static/stefstuntpiloot.png);
+            background-repeat: no-repeat;
+            background-size: contain;
+          }
+          .banana{
+            background-image: url(./static/banana.jpg);
+            background-repeat: no-repeat;
+            background-size: contain;
+          }
+        `}</style>
+        <div className="box stef" onClick={() => this.emitEvent('stuntEvent')}>
+          <img src="" />
+
+        </div>
+        <div className="box banana" onClick={() => this.emitEvent('bananaEvent')}>
+
+        </div>
       </div>
     );
   }
