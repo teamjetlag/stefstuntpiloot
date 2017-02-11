@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/Head';
 import io from 'socket.io-client';
 import os from 'os';
 
@@ -38,7 +39,13 @@ class client extends React.Component {
 
   render() {
     return (
-      <div >
+      <div>
+        <Head>
+          <title>Jetlag Client</title>
+          <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+          <script src="/static/aframe.min.js"></script>
+          <script src="/static/aframe-physics-system.js"></script>
+        </Head>
         <style jsx>{`
           .box {
             cursor: pointer;
