@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
     <title>My page title</title>
     <script src="aframe.min.js"></script>
     <script src="aframe-physics-system.js"></script>
@@ -15,8 +15,6 @@
       }
 
       var socket = io(host);
-
-
 
       // Apply impulse for element
       function applyImpulse(element) {
@@ -76,17 +74,20 @@
         socket.emit('newGame')
       }
 
+      socket.on('again', () => {
+        debugger;
+        location.reload();
+      });
+
       function handleSceneClick(){
         console.log('Click');
       }
     </script>
   </head>
   <body>
-    <header>
-      <button onClick="newGame()">New Game</button>
-    </header>
 
-    <a-scene physics="debug: true; friction: 0.002;" physics-world="0 -9.8 0" onClick="handleSceneClick()">
+
+    <a-scene physics="debug: false; friction: 0.002;" physics-world="0 -9.8 0" onClick="handleSceneClick()">
 
       <a-entity rotation="-45 0 0" position="0 5 8">
         <a-camera></a-camera>

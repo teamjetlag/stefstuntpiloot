@@ -1,7 +1,6 @@
 import React from 'react';
 import io from 'socket.io-client';
 import os from 'os';
-import _JSXStyle from 'styled-jsx/style'
 
 let socket;
 const HOST = `http://${os.hostname()}`;
@@ -20,6 +19,10 @@ class client extends React.Component {
       console.log('Hello event received at client.js');
       console.log(data);
     });
+  }
+
+  newGame() {
+    socket.emit('newGame', 'Emitting new game from client.js');
   }
 
   emitEvent(eventName) {
@@ -54,6 +57,7 @@ class client extends React.Component {
             background-size: contain;
           }
         `}</style>
+        <button onClick={this.newGame}>New Game</button>
         <div className="box stef" onClick={() => this.emitEvent('stuntEvent')}>
           <img src="" />
 
