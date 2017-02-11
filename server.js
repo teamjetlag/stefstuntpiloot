@@ -29,21 +29,27 @@ app.prepare().then(() => {
 
     socket.emit('hello', 'Hello from server');
 
-    socket.on('sceneClicked', (data) => {
-      console.log('Scene clicked data received from client to server');
-      console.log(data);
-
-      // Emit the scene update to all clients
-      io.emit('sceneUpdate', data);
+    // New game
+    socket.on('newGame', () => {
+      io.emit('again');
     });
 
-    socket.on('newGame', () => {
-      io.emit('again')
-    })
-
-    socket.on('disconnected', (data) => {
-      console.log('Client was disconnected from server');
+    // Stunt event
+    socket.on('stuntEvent', (data) => {
+      console.log('Stunt event received at server');
       console.log(data);
+
+      // Emit the stuntEvent to all clients
+      io.emit('stuntEvent', data);
+    });
+
+    // Banana event
+    socket.on('bananaEvent', (data) => {
+      console.log('Banana event received at server');
+      console.log(data);
+
+      // Emit the bananaEvent to all clients
+      io.emit('bananaEvent', data);
     });
   });
 

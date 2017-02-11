@@ -64,22 +64,17 @@ var Index = function (_React$Component) {
   (0, _inherits3.default)(Index, _React$Component);
 
   function Index() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
     (0, _classCallCheck3.default)(this, Index);
 
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Index.__proto__ || (0, _getPrototypeOf2.default)(Index)).call.apply(_ref, [this].concat(args))), _this), _this.newGame = function () {
-      socket.emit('newGame');
-    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+    return (0, _possibleConstructorReturn3.default)(this, (Index.__proto__ || (0, _getPrototypeOf2.default)(Index)).apply(this, arguments));
   }
 
   (0, _createClass3.default)(Index, [{
+    key: 'newGame',
+    value: function newGame() {
+      socket.emit('newGame');
+    }
+  }, {
     key: 'handleSceneClick',
     value: function handleSceneClick() {
       console.log('Scene was clicked');
@@ -97,22 +92,23 @@ var Index = function (_React$Component) {
       socket.on('hello', function (data) {
         console.log(data);
       });
-      socket.on('sceneUpdate', function (data) {
-        console.log('Scene update received from server to client');
+
+      socket.on('again', function () {
+        location.reload();
+      });
+
+      socket.on('stuntEvent', function (data) {
+        console.log('Stunt event received at index.j');
         console.log(data);
 
         // Apply impulse
         (0, _impulse2.default)(boxB);
       });
-
-      socket.on('again', function () {
-        location.reload();
-      });
     }
   }, {
     key: 'render',
     value: function render() {
-      return _react2.default.createElement('div', null, _react2.default.createElement(_head2.default, null, _react2.default.createElement('title', null, 'My page title'), _react2.default.createElement('meta', { name: 'viewport', content: 'initial-scale=1.0, width=device-width' }), _react2.default.createElement('script', { src: '/static/aframe.min.js' }), _react2.default.createElement('script', { src: '/static/aframe-physics-system.js' })), _react2.default.createElement('header', null, _react2.default.createElement('button', { onClick: this.newGame }, 'New Game')), _react2.default.createElement('a-scene', { physics: 'debug: false; friction: 0.002;', 'physics-world': '0 -9.8 0', onClick: this.handleSceneClick }, _react2.default.createElement('a-entity', { rotation: '-45 0 0', position: '0 5 8' }, _react2.default.createElement('a-camera', null)), _react2.default.createElement('a-plane', { 'static-body': true, position: '0 -1 0', rotation: '-90 0 0', width: '20', height: '20', color: '#7BC8A4' }), _react2.default.createElement('a-cylinder', { id: 'boxA', color: 'white', 'static-body': true, position: '0 0 0', width: '0.5', height: '1', depth: '0.5' }), _react2.default.createElement('a-sphere', {
+      return _react2.default.createElement('div', null, _react2.default.createElement(_head2.default, null, _react2.default.createElement('title', null, 'My page title'), _react2.default.createElement('meta', { name: 'viewport', content: 'initial-scale=1.0, width=device-width' }), _react2.default.createElement('script', { src: '/static/aframe.min.js' }), _react2.default.createElement('script', { src: '/static/aframe-physics-system.js' })), _react2.default.createElement('header', null, _react2.default.createElement('button', { onClick: this.newGame }, 'New Game')), _react2.default.createElement('a-scene', { physics: 'debug: false; friction: 0.002;', 'physics-world': '0 -9.8 0' }, _react2.default.createElement('a-entity', { rotation: '-45 0 0', position: '0 5 8' }, _react2.default.createElement('a-camera', null)), _react2.default.createElement('a-plane', { 'static-body': true, position: '0 -1 0', rotation: '-90 0 0', width: '20', height: '20', color: '#7BC8A4' }), _react2.default.createElement('a-cylinder', { id: 'boxA', color: 'white', 'static-body': true, position: '0 0 0', width: '0.5', height: '1', depth: '0.5' }), _react2.default.createElement('a-sphere', {
         id: 'boxB',
         color: 'red',
         'dynamic-body': 'mass: 50',
