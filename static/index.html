@@ -16,6 +16,8 @@
 
       var socket = io(host);
 
+
+
       // Apply impulse for element
       function applyImpulse(element) {
         console.log('Applying impulse');
@@ -45,15 +47,37 @@
 
       // Banana event
       socket.on('bananaEvent', (data) => {
-        console.log('Banana event received at index.html');
-        console.log(data);
 
-        // TODO: Herre's banana
+        console.log('Banana event received at index.html');
+
+        console.log('Add Banaan');
+
+        var rndX = (20 * Math.random()) - 10;
+        var rndZ = (20 * Math.random()) - 10;
+
+        var asset = document.createElement('a-asset-item');
+        asset.setAttribute('id', "banaan");
+        asset.setAttribute('src', "banaan.obj");
+        document.querySelector('a-assets').appendChild(asset);
+
+        var banaan = document.createElement('a-obj-model');
+        banaan.setAttribute('dynamic-body', "shape: box");
+        banaan.setAttribute('src', "#banaan");
+        banaan.setAttribute('material', "shader: flat; color: #ffff00;");
+        banaan.setAttribute('mass', 0.5);
+        banaan.setAttribute('position', rndX + " 5 " + rndZ);
+        banaan.setAttribute('scale', "0.1 0.1 0.1");
+        banaan.setAttribute('rotation', "-90 0 0");
+        document.querySelector('a-scene').appendChild(banaan);
       });
 
       // Create a new game
       function newGame() {
         socket.emit('newGame')
+      }
+
+      function handleSceneClick(){
+        console.log('Click');
       }
     </script>
   </head>
@@ -62,7 +86,7 @@
       <button onClick="newGame()">New Game</button>
     </header>
 
-    <a-scene physics="debug: true; friction: 0.002;" physics-world="0 -9.8 0">
+    <a-scene physics="debug: true; friction: 0.002;" physics-world="0 -9.8 0" onClick="handleSceneClick()">
 
       <a-entity rotation="-45 0 0" position="0 5 8">
         <a-camera></a-camera>
@@ -122,6 +146,12 @@
         <a-cylinder dynamic-body mass="2" position="0 1   5" color="blue" height=0.1 radius="0.4" rotation="0 0 90"></a-cylinder>
         <a-cylinder dynamic-body mass="2" position="0 1.5 5.5" color="orange" height=0.1 radius="0.4" rotation="0 0 90"></a-cylinder>
       </a-entity>
+
+      <a-assets>
+
+      </a-assets>
+
+
     </a-scene>
 
     <script src="script.js"></script>

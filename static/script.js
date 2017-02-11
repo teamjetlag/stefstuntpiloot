@@ -48,7 +48,7 @@ AFRAME.registerComponent('slider', {
 
 scene.addEventListener('loaded', function() {
 
-
+  console.log('load');
   var bodyA = boxA.body;
   var pivotA = new CANNON.Vec3().copy(bodyA.position); // Vector from posA perpendicular to axisA
 
