@@ -44,18 +44,17 @@ var _impulse = require('./../static/impulse');
 
 var _impulse2 = _interopRequireDefault(_impulse);
 
+var _style = require('/Users/axel/Projects/Capathon/stefstuntpiloot/node_modules/styled-jsx/style.js');
+
+var _style2 = _interopRequireDefault(_style);
+
+var _websocket = require('../static/websocket');
+
+var _websocket2 = _interopRequireDefault(_websocket);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var socket = void 0;
-var HOST = 'http://' + _os2.default.hostname();
-
-if (HOST === 'http://localhost') {
-  socket = (0, _socket2.default)(HOST + ':3000');
-} else {
-  socket = (0, _socket2.default)(HOST);
-}
-
-console.log('HOST: ' + HOST);
+var socket = (0, _websocket2.default)();
 
 // Instantiate variables used for refs
 var boxB = void 0;

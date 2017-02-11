@@ -3,17 +3,15 @@ import Head from 'next/head';
 import io from 'socket.io-client';
 import os from 'os';
 import applyImpulse from './../static/impulse';
+import _JSXStyle from 'styled-jsx/style'
 
-let socket;
-const HOST = `http://${os.hostname()}`;
+import websocket from '../static/websocket'
 
-if (HOST === 'http://localhost') {
-  socket = io(`${HOST}:3000`);
-} else {
-  socket = io(HOST);
-}
+let socket = websocket()
 
-console.log(`HOST: ${HOST}`);
+
+
+
 
 // Instantiate variables used for refs
 let boxB;
